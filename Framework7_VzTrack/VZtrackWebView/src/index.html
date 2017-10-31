@@ -4,20 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>Framework7</title>
+
   <link rel="stylesheet" href="../assets/css/framework7.min.css">
+    <link rel="stylesheet" href="../assets/css/framework7.md.min.css">
    <link rel="stylesheet" href="../assets/css/app.css">
-  
+    <!-- <link rel="stylesheet" href="../assets/css/placeholderAnimation.css"> -->
+  <link rel = "stylesheet" 
+         href = "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.material.min.css" />
+      <link rel = "stylesheet" 
+         href = "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.material.colors.min.css" />
  <script type="text/javascript" src="../assets/js/framework7.min.js"></script>
   
   <!-- <link rel="stylesheet" href="../assets/app.css"> -->
 </head>
-<body id="app" ng-controller="VZMainController">
-
+<body id="app" ng-controller="VZMainController" >
      <div ui-view></div>
       <div oz-spinner></div>
        
    <script type="text/javascript" src="../assets/js/angular.min.js"></script>
   <script type="text/javascript" src="../assets/js/angular-ui-router.min.js"></script> 
+   <script type="text/javascript" src="../assets/js/angular-resource.min.js"></script>
   <script type="text/javascript" src="../assets/js/ng-cordova.min.js"></script> 
    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     
@@ -25,4 +31,5 @@
    <script src="../VZ/route.js"></script>
  <script type="text/javascript" src="VZ/Home/controller/HomeController.js"></script>
   <script type="text/javascript" src="VZ/SignIn/controller/SignInController.js"></script>
+  <script type="text/javascript" src="VZ/SignIn/Service/SignInService.js"></script>
 </body>
