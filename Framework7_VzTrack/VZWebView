@@ -1,0 +1,58 @@
+upstream VZWebView{
+     server 52.76.144.181;
+    #server localhost weight=5;    
+    #server 127.0.0.3:8001 weight=5;
+    #server 192.168.0.1:8000;
+    #server 192.168.0.1:8001;
+}
+
+ server { # simple reverse-proxy
+    listen   9890;
+    #SSL support
+    #listen       443;
+    #ssl_certificate /some/location/prodonus.com.bundle.crt;
+    #ssl_certificate_key /some/location/prodonus.com.key;
+    #ssl_protocols        SSLv3 TLSv1;
+    #ssl_ciphers HIGH:!aNULL:!MD5;
+
+    server_name  localhost rest1.localhost;
+    access_log   /var/log/nginx/oz_sellers_sprint.access.log;
+    
+    # serve static files
+    location ~ ^/(images|javascript|js|css|flash|media|html|static)/  {
+      root     /home/admin1/Anant/AU-OZ/Framework7VZ/Framework7_VzTrack/VZtrackWebView/src;
+      index   index.html index.htm index.php;
+      expires 365d;
+    }
+    location / {
+      expires -1;
+      add_header Cache-Control "no-store, no-cache, must-revalidate, post-check=0, pre-check=0";
+      #root /var/web;
+      root  /home/admin1/Anant/AU-OZ/Framework7VZ/Framework7_VzTrack/VZtrackWebView/src;
+      index   index.html index.htm index.php;
+	try_files $uri $uri/ /index.html = 404;
+    }
+   
+    # Gzip Compression
+    gzip on;
+    gzip_comp_level 6;
+    gzip_vary on;
+    gzip_min_length  1000;
+    gzip_proxied any;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_buffers 16 8k;
+
+    # pass requests for dynamic content to rails/turbogears/zope, et al
+    location /VZ-Test/api {
+      proxy_pass      http://52.76.144.181;
+      proxy_set_header   X-Real-IP $remote_addr;
+      proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+      proxy_set_header   Host $http_host;
+      proxy_set_header   X-NginX-Proxy true;
+      proxy_redirect off;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+}
+

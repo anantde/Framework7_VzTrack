@@ -1,4 +1,4 @@
-var angularModule = angular.module('VZTrackWebView',["ui.router"]);
+var angularModule = angular.module('VZTrackWebView',["ui.router",'ngResource']);
 var app;
 angularModule.config(['$stateProvider',function($stateProvider){
 // Dom7
