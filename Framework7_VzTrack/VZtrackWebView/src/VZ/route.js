@@ -1,20 +1,6 @@
 var angularModule = angular.module("VZTrackWebView");
 
 angularModule.config(['$stateProvider',function($stateProvider){
-	console.log("rout");
-
-	  /*var helloState = {
-    name: 'hello',
-    url: '/hello',
-    template: '<h3>hello world!</h3>'
-  }
-
-  var aboutState = {
-    name: 'about',
-    url: '/about',
-    template: '<h3>Its the UI-Router hello world app!</h3>'
-  }*/
-
   $stateProvider
 	.state('home', { 
       abstarct:true,
@@ -54,20 +40,10 @@ angularModule.config(['$stateProvider',function($stateProvider){
         }
       }
     })   
-   /* .state('about', { 
-      abstarct:true,
-      templateUrl: 'VZ/Home/views/vz.about.tpl.html'
-    }) 
-    .state('about.view', {
-     url:'/about',
-      views: {
-        'about-view' : {
-          templateUrl: 'VZ/Home/views/vz.about.view.tpl.html',
-          viewIndex:2
-        }
-      }
-    })  */
 
- /* $stateProvider.state(helloState);
-  $stateProvider.state(aboutState);*/
+    .state('list',{
+      templateUrl: 'VZ/visitors/views/vz.visitors.view.html',
+      url: '/visitors',
+      controller: 'VZVisitorsController'
+    })
 }]);

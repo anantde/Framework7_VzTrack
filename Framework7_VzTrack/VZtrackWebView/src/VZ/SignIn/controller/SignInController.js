@@ -1,8 +1,11 @@
 angular.module('VZTrackWebView')
-.controller('VZSignInController',['$scope','$rootScope','UserSignInServices',function($scope,$rootScope,UserSignInServices){
+.controller('VZSignInController',['$scope','$rootScope','UserSignInServices', '$state',function($scope,$rootScope,UserSignInServices, $state){
 console.log('initialise SignIn controller');
 
-
+$scope.login=function(){
+		console.log("Login function called...!");
+		$state.go('list', {});
+	}
 
 
 $scope.jsonForSigninUser=function(){
@@ -21,6 +24,8 @@ console.log("signin 2");
 		"user_password":"12345"}
 		return angular.toJson(userdata);
 	}
+
+
 
 	$scope.userSignin=function(){
 	console.log("signin 1");
@@ -92,6 +97,6 @@ var cleanupEventSigninNotDone = $rootScope.$on("SigninNotDone", function(event, 
 $scope.$on('$destroy', function(event, message) {
 		cleanupEventSigninDone();
     	cleanupEventSigninNotDone();
-    	$rootScope.hideSpinner();
+    	// $rootScope.hideSpinner();
     });
 }]);
